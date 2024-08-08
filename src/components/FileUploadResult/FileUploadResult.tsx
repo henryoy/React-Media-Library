@@ -1,5 +1,7 @@
-import React, {ReactElement} from "react";
+import React, {ReactElement, useContext} from "react";
 import {FileUploadListProps, FileUploadListItem} from "../../../types";
+import {ReactMediaLibraryContext} from "../../context/ReactMediaLibraryContext";
+import { FileTranslateProps } from "../../../types/components/FileTranslate";
 
 export enum FileUploadStatus {
 	FAILED = "failed",
@@ -24,30 +26,37 @@ function renderIcon(status: FileUploadStatus): ReactElement {
 	}
 }
 
-function renderBadge(status: FileUploadStatus): ReactElement {
+function renderBadge(status: FileUploadStatus, translate : FileTranslateProps): ReactElement {
+
+
+	
+
 	switch (status) {
 		case FileUploadStatus.FAILED:
 			return (
 				<div className="react-media-library__file-upload-result__list__item__icon-failed">
-					Failed
+					{ translate ? translate.uploadFailed : "Failed" } 
 				</div>
 			);
 		case FileUploadStatus.PROCESSING:
 			return (
 				<div className="react-media-library__file-upload-result__list__item__icon-processing">
-					Processing
+					{ translate ? translate.uploadProssesing : "Processing" }
 				</div>
 			);
 		case FileUploadStatus.SUCCESS:
 			return (
 				<div className="react-media-library__file-upload-result__list__item__icon-success">
-					Success
+					{ translate ? translate.uploadSuccess : "Success" }
 				</div>
 			);
 	}
 }
 
 const FileUploadResult: React.FC<FileUploadListProps> = (props: FileUploadListProps): ReactElement => {
+
+	const { translate } = useContext(ReactMediaLibraryContext);
+
 	function renderList(): ReactElement[] {
 		return props.fileUploadList.map((element: FileUploadListItem, index: number) => {
 			return (
@@ -59,7 +68,7 @@ const FileUploadResult: React.FC<FileUploadListProps> = (props: FileUploadListPr
 					<div className="react-media-library__file-upload-result__list__item__filename">
 						{element.fileName}
 					</div>
-					{renderBadge(element.status)}
+					{renderBadge(element.status,translate)}
 				</li>
 			);
 		});
@@ -67,7 +76,7 @@ const FileUploadResult: React.FC<FileUploadListProps> = (props: FileUploadListPr
 
 	return (
 		<div className="react-media-library__file-upload-result">
-			<h3>Uploaded Files</h3>
+			<h3>{ props.translate ? props.translate.uploadedFiles : "Uploaded Files" }</h3>
 			<ul className="react-media-library__file-upload-result__list">
 				{renderList()}
 			</ul>

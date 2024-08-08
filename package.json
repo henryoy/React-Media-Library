@@ -1,8 +1,8 @@
 {
-  "name": "react-media-library",
+  "name": "react-media-library-hoy",
   "version": "2.0.3",
   "description": "React Media Library is a UI package similar to the WordPress media library, but for React. It features file drag-and-drop as well as a library to select previously uploaded files.",
-  "homepage": "https://github.com/Richard1320/React-Media-Library",
+  "homepage": "https://github.com/henryoy/React-Media-Library",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "types/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Richard1320/React-Media-Library.git"
+    "url": "git@github.com:henryoy/React-Media-Library.git"
   },
   "keywords": [
     "react",
@@ -74,7 +74,7 @@
     "react-dom": ">= 16.X.X"
   },
   "bugs": {
-    "url": "https://github.com/Richard1320/React-Media-Library/issues",
-    "email": "richardhung111@gmail.com"
+    "url": "https://github.com/henryoy/React-Media-Library/issues",
+    "email": "hency.oy@gmail.com"
   }
 }

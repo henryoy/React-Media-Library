@@ -5,6 +5,7 @@ import {ReactMediaLibraryContext} from "../../context/ReactMediaLibraryContext";
 
 const ReactMediaLibraryTabs: React.FC = (): ReactElement => {
 	const {
+		translate,
 		fileUploadCallback,
 		filesSelectCallback
 	} = useContext(ReactMediaLibraryContext);
@@ -23,7 +24,7 @@ const ReactMediaLibraryTabs: React.FC = (): ReactElement => {
 								type="button"
 								onClick={() => setCurrentTab("browse")}
 							>
-								Browse Files
+								{ translate ? translate.browseFiles : "Browse Files" }
 							</button>
 						</div>
 						<div
@@ -33,7 +34,7 @@ const ReactMediaLibraryTabs: React.FC = (): ReactElement => {
 								type="button"
 								onClick={() => setCurrentTab("upload")}
 							>
-								Upload File
+								{ translate ? translate.uploadFiles : "Upload File" }
 							</button>
 						</div>
 					</React.Fragment>

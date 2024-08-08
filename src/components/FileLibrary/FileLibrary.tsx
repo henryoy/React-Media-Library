@@ -5,6 +5,8 @@ import {ReactMediaLibraryContext} from "../../context/ReactMediaLibraryContext";
 
 const FileLibrary: React.FC = (): ReactElement => {
 	const {
+		size,
+		translate,
 		selectedItems,
 		setSelectedItems,
 		sortProperty,
@@ -112,7 +114,7 @@ const FileLibrary: React.FC = (): ReactElement => {
 						</ul>
 					) : (
 						<p className="react-media-library__file-library__empty">
-							No files available. Please upload a file.
+							{ translate ? translate.nofiles : " No files available. Please upload a file." }
 						</p>
 					)}
 
@@ -132,7 +134,7 @@ const FileLibrary: React.FC = (): ReactElement => {
 								<button
 									type="button"
 									className="react-media-library__file-library__footer__actions__deselect"
-									onClick={() => filesSelectCallback([])}
+									onClick={() => filesSelectCallback!([])}
 								>
 									Deselect File{defaultSelectedItemIds.length > 1 ? "s" : ""}
 								</button>

@@ -9,6 +9,21 @@ export type ReactMediaLibraryStory = StoryObj<typeof ReactMediaLibrary>;
 
 export const storiesDefaultPrimaryArgs: ReactMediaLibraryProps = {
 	multiSelect: false,
+	size:3,
+	translate : {
+		titleModal:"Media Library",
+		dragTitle: "Suelta los archivos aquí...",
+		dragSubtitle:"Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos",
+		uploadFailed:"Fallido",
+		uploadProssesing:"Procesando",
+		uploadSuccess:"Correcto",
+		uploadFiles:"Subir archivos",
+		browseFiles:"Búsqueda de archivos",
+		nofiles:"No files available. Please upload a file.",
+		uploadedFiles:"Archivos subidos",
+		deleteFile:"Borrar {%n} archivo",
+		selectFile:"Seleccione {%n} archivo"
+	},
 	isOpen: true,
 	onClose: () => {
 	},

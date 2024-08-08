@@ -12,6 +12,22 @@ const ReactMediaLibrary: React.FC<ReactMediaLibraryProps> = ({
 	sortAscending = false,
 	isOpen = false,
 	multiSelect = false,
+	size = 1,
+	translate = {
+		titleModal:"Media Library",
+		/** Title an text in drag ann drop field **/
+		dragTitle: "Suelta los archivos aquí...",
+		dragSubtitle:"Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos",
+		uploadFailed:"Fallido",
+		uploadProssesing:"Procesando",
+		uploadSuccess:"Correcto",
+		uploadFiles:"Subir archivos",
+		browseFiles:"Búsqueda de archivos",
+		nofiles:"No files available. Please upload a file.",
+		uploadedFiles:"Archivos subidos",
+		deleteFile:"Borrar {%n} archivo",
+		selectFile:"Seleccione {%n} archivo"
+	},
 	fileLibraryList = [],
 	libraryCardComponent = (item) => (<FileLibraryCard {...item} />),
 	selectedItemsComponent = () => (<FileLibrarySelectedItems/>),
@@ -49,6 +65,8 @@ const ReactMediaLibrary: React.FC<ReactMediaLibraryProps> = ({
 	return (
 		<ReactMediaLibraryContext.Provider
 			value={{
+				size:size,
+				translate:translate,
 				selectedItems: selectedItems,
 				setSelectedItems: setSelectedItems,
 				multiSelect: multiSelect,
@@ -73,7 +91,7 @@ const ReactMediaLibrary: React.FC<ReactMediaLibraryProps> = ({
 				<div className="react-media-library__modal">
 					<div className="react-media-library__modal__header">
 						<h2 className="react-media-library__modal__header__title">
-							{modalTitle}
+							{ translate ? translate.titleModal : modalTitle } 
 						</h2>
 						<div className="react-media-library__modal__header__close">
 							<button

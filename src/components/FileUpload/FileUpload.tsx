@@ -5,7 +5,7 @@ import {FileUploadListItem} from "../../../types";
 import {ReactMediaLibraryContext} from "../../context/ReactMediaLibraryContext";
 
 const FileUpload: React.FC = (): ReactElement => {
-	const {fileUploadCallback, finishUploadCallback, acceptedTypes} = useContext(ReactMediaLibraryContext);
+	const {fileUploadCallback, finishUploadCallback, acceptedTypes, size, translate} = useContext(ReactMediaLibraryContext);
 	const [fileUploadList, setFileUploadList] = useState<Array<FileUploadListItem>>([]);
 	const dropzoneOptions: DropzoneOptions = {
 		onDrop,
@@ -17,24 +17,35 @@ const FileUpload: React.FC = (): ReactElement => {
 			dropzoneOptions.accept[type] = [];
 		}
 	}
+	
 	const {getRootProps, getInputProps, isDragActive} = useDropzone(dropzoneOptions);
 
 	async function onDrop(acceptedFiles: Array<File>): Promise<void> {
 		// Prepend uploaded file list with new upload items
-		let newFileUploadList: Array<FileUploadListItem> = acceptedFiles.map((element: File) => {
+		let newFileUploadList: Array<FileUploadListItem> = acceptedFiles.map((element: File) => {			
 			return {
 				fileName: element.name,
 				status: FileUploadStatus.PROCESSING,
 			};
 		}).concat(fileUploadList);
+
 		setFileUploadList(newFileUploadList);
+
+		console.log(acceptedFiles);
 
 		// Loop through new upload items
 		for (const index in acceptedFiles) {
 			const file = acceptedFiles[index];
-			const result: boolean = await fileUploadCallback(file);
-			newFileUploadList = [...newFileUploadList];
-			newFileUploadList[index].status = (result) ? FileUploadStatus.SUCCESS : FileUploadStatus.FAILED;
+			let sizeInMB = (file.size  / (1024*1024));
+			console.log(`El tamaño de la imagen ${sizeInMB}`)
+			if(sizeInMB > size){
+				newFileUploadList[index].status = FileUploadStatus.FAILED;
+			}else{
+				const result: boolean = await fileUploadCallback!(file);
+				newFileUploadList = [...newFileUploadList];
+				newFileUploadList[index].status = (result) ? FileUploadStatus.SUCCESS : FileUploadStatus.FAILED;
+			}
+			
 			setFileUploadList(newFileUploadList);
 		}
 
@@ -49,12 +60,13 @@ const FileUpload: React.FC = (): ReactElement => {
 			>
 				<input {...getInputProps()} />
 				{isDragActive ?
-					<p>Drop the files here ...</p> :
-					<p>Drag 'n' drop some files here, or click to select files</p>
+					( translate ? translate.dragTitle : <p>Drop the files here ...</p> )
+					 :
+					 ( translate ? translate.dragSubtitle : <p>Drag 'n' drop some files here, or click to select files</p> )
 				}
 			</div>
 			{(fileUploadList.length > 0) && (
-				<FileUploadResult fileUploadList={fileUploadList}/>
+				<FileUploadResult fileUploadList={fileUploadList} translate={translate}/>
 			)}
 		</React.Fragment>
 	)

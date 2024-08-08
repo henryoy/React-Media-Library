@@ -6,7 +6,7 @@ import {FileLibrarySelectedItemsProps} from "../../../types";
 const FileLibrarySelectedItems: React.FC<FileLibrarySelectedItemsProps> = ({
 	itemComponent = (item) => (<FileLibrarySelectedItemsCard{...item} />),
 }: FileLibrarySelectedItemsProps): ReactElement => {
-	const {selectedItems, filesSelectCallback, filesDeleteCallback} = useContext(ReactMediaLibraryContext);
+	const {translate, selectedItems, filesSelectCallback, filesDeleteCallback} = useContext(ReactMediaLibraryContext);
 
 	return (
 		<div
@@ -29,16 +29,31 @@ const FileLibrarySelectedItems: React.FC<FileLibrarySelectedItemsProps> = ({
 						type="button"
 						className="react-media-library__file-library-selected-items__actions__delete"
 						onClick={() => filesDeleteCallback?.(selectedItems)}
-					>
-						Delete {selectedItems.length > 1 ? selectedItems.length : ""} File{selectedItems.length > 1 ? "s" : ""}
+					>	
+					{
+						translate ? 
+							`${translate.deleteFile.replace("{%n}",`${selectedItems.length > 1 ? selectedItems.length : ""}`) }${selectedItems.length > 1 ? "s" : ""}`
+						:
+						(
+							`Delete ${selectedItems.length > 1 ? selectedItems.length : ""} File${selectedItems.length > 1 ? "s" : ""}`
+						)
+					}					
+						
 					</button>
 				)}
 				<button
 					type="button"
 					className="react-media-library__file-library-selected-items__actions__select"
-					onClick={() => filesSelectCallback(selectedItems)}
+					onClick={() => filesSelectCallback!(selectedItems)}
 				>
-					Select {selectedItems.length > 1 ? selectedItems.length : ""} File{selectedItems.length > 1 ? "s" : ""}
+					{
+						translate ? 
+							`${translate.selectFile.replace("{%n}",`${selectedItems.length > 1 ? selectedItems.length : ""}`) }${selectedItems.length > 1 ? "s" : ""}`
+						:
+						(
+							`Select ${selectedItems.length > 1 ? selectedItems.length : ""} File${selectedItems.length > 1 ? "s" : ""}`
+						)
+					}
 				</button>
 
 			</div>
