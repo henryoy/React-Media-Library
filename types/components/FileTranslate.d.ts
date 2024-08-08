@@ -3,6 +3,7 @@ export interface FileTranslateProps {
 	/** Title an text in drag ann drop field **/
 	dragTitle: strig;
     dragSubtitle:string;
+    uploadError:string;
     uploadFailed:string;
     uploadProssesing:string;
     uploadSuccess:string;

@@ -31,15 +31,12 @@ const FileUpload: React.FC = (): ReactElement => {
 
 		setFileUploadList(newFileUploadList);
 
-		console.log(acceptedFiles);
-
 		// Loop through new upload items
 		for (const index in acceptedFiles) {
 			const file = acceptedFiles[index];
 			let sizeInMB = (file.size  / (1024*1024));
-			console.log(`El tamaño de la imagen ${sizeInMB}`)
 			if(sizeInMB > size){
-				newFileUploadList[index].status = FileUploadStatus.FAILED;
+				newFileUploadList[index].status = FileUploadStatus.ERROR;
 			}else{
 				const result: boolean = await fileUploadCallback!(file);
 				newFileUploadList = [...newFileUploadList];

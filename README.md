@@ -24,4 +24,58 @@ See [Storybook](https://richard1320.github.io/React-Media-Library/).
 
 ## Extra
 
-it is only extended to validate the size of the image to be loaded and the language
+it is only extended to validate the size of the image to be loaded and the language.
+
+the size to be passed is in MB
+
+```js
+    size={1}    
+```
+
+```js
+ translate = {{
+            titleModal:"Multimedia",
+            dragTitle: "Suelta los archivos aquí...",
+            dragSubtitle:"Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos",
+            uploadError: "Peso no valido",
+            uploadFailed:"Fallido",
+            uploadProssesing:"Procesando",
+            uploadSuccess:"Correcto",
+            uploadFiles:"Subir archivos",
+            browseFiles:"Búsqueda de archivos",
+            nofiles:"No hay archivos disponibles. Por favor cargue un archivo.",
+            uploadedFiles:"Archivos subidos",
+            deleteFile:"Borrar {%n} archivo",
+            selectFile:"Seleccione {%n} archivo"
+          }}
+```
+```js
+ <ReactMediaLibrary       
+          fileLibraryList={fileLibraryList}
+          fileUploadCallback={fileUploadCallback}
+          filesDeleteCallback={fileDeleteCallback}
+          filesSelectCallback={fileSelectCallback}
+          finishUploadCallback={finishUploadCallback}
+          isOpen={isOpen}
+          multiSelect
+          modalTitle={`Multimedia`}
+          onClose={onClose}
+          size={2}
+          translate = {{
+            titleModal:"Multimedia",
+            dragTitle: "Suelta los archivos aquí...",
+            dragSubtitle:"Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos",
+            uploadError: "Peso no valido",
+            uploadFailed:"Fallido",
+            uploadProssesing:"Procesando",
+            uploadSuccess:"Correcto",
+            uploadFiles:"Subir archivos",
+            browseFiles:"Búsqueda de archivos",
+            nofiles:"No hay archivos disponibles. Por favor cargue un archivo.",
+            uploadedFiles:"Archivos subidos",
+            deleteFile:"Borrar {%n} archivo",
+            selectFile:"Seleccione {%n} archivo"
+          }           
+          }
+        />
+```

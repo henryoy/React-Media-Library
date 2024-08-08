@@ -9,7 +9,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "moduleResolution": "node",
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true
   },

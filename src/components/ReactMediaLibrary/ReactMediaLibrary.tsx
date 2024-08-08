@@ -18,6 +18,7 @@ const ReactMediaLibrary: React.FC<ReactMediaLibraryProps> = ({
 		/** Title an text in drag ann drop field **/
 		dragTitle: "Suelta los archivos aquí...",
 		dragSubtitle:"Arrastre y suelte algunos archivos aquí o haga clic para seleccionar archivos",
+		uploadError: "Peso no valido",
 		uploadFailed:"Fallido",
 		uploadProssesing:"Procesando",
 		uploadSuccess:"Correcto",

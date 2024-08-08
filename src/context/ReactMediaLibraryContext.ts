@@ -9,6 +9,7 @@ const reactMediaLibraryDefaultContext: ReactMediaLibraryContextType = {
 		titleModal:"Media Library",
 		dragTitle: "Drop the files here ...",
 		dragSubtitle:"Drag 'n' drop some files here, or click to select files",
+		uploadError:"Error for size",
 		uploadFailed:"Failed",
 		uploadProssesing:"Processing",
 		uploadSuccess:"Success",

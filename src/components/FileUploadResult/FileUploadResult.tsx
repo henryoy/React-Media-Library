@@ -7,11 +7,16 @@ export enum FileUploadStatus {
 	FAILED = "failed",
 	PROCESSING = "processing",
 	SUCCESS = "success",
+	ERROR = "error"
 }
 
 function renderIcon(status: FileUploadStatus): ReactElement {
 	switch (status) {
 		case FileUploadStatus.FAILED:
+			return (
+				<span className="icon-failed"/>
+			);
+		case FileUploadStatus.ERROR:
 			return (
 				<span className="icon-failed"/>
 			);
@@ -36,6 +41,12 @@ function renderBadge(status: FileUploadStatus, translate : FileTranslateProps): 
 			return (
 				<div className="react-media-library__file-upload-result__list__item__icon-failed">
 					{ translate ? translate.uploadFailed : "Failed" } 
+				</div>
+			);
+		case FileUploadStatus.ERROR:
+			return (
+				<div className="react-media-library__file-upload-result__list__item__icon-failed">
+					{ translate ? translate.uploadError : "Error for size" } 
 				</div>
 			);
 		case FileUploadStatus.PROCESSING:
